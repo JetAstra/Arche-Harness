@@ -8,7 +8,7 @@ English | [简体中文](README.zh-CN.md)
 
 Arche-Harness builds on ARCHE, a multi-agent system for computational chemistry that connects scientific questions, literature retrieval, competing mechanistic hypotheses, computational experiments, and evidence-based conclusions. It supports research into reaction mechanisms, stereoselectivity, photochemical activation, and interpretable chemical descriptors.
 
-This repository is based on the ARCHE project associated with Dong Li et al., **“Autonomous Chemical Mechanistic Discovery through Agentic Reasoning and Validation.”** The current implementation adds persistent working memory, isolated investigation sessions, and recovery for long-running chemistry jobs so that reasoning, validation, and reflection can continue across interruptions.
+This repository is developed from the original ARCHE code released with Dong Li et al., **“Autonomous Chemical Mechanistic Discovery through Agentic Reasoning and Validation,”** available at [Arvin0313/ARCHE](https://github.com/Arvin0313/ARCHE). Building on that codebase, Arche-Harness restructures the planning–execution–reflection loop after hypothesis formation around a Harness-based architecture, refactors computational-toolbox encapsulation and inheritance, and integrates the ARCHE execution workflow with the toolbox. The current implementation also adds persistent working memory, isolated investigation sessions, and recovery for long-running chemistry jobs so that reasoning, validation, and reflection can continue across interruptions.
 
 > **Release scope.** This repository contains the current `investigation_v2` implementation and a subset of machine-readable case data. The paper describes an earlier Planner/Execution/Reflection implementation; read [Paper and code versions](#paper-and-code-versions) before comparing results. The code is released under the [repository license](LICENSE) for academic and non-commercial research. Patent applications related to ARCHE have been filed.
 
@@ -16,8 +16,8 @@ This repository is based on the ARCHE project associated with Dong Li et al., **
 
 Building on ARCHE, this repository substantially reworks the planning–execution–reflection loop after hypothesis formation, together with the toolbox encapsulation and inheritance architecture:
 
-- **Harness-based planning–execution–reflection architecture:** Shijie Wang and Yifei Cheng. They organized planning, execution, evidence collection, and reflective review after hypothesis formation into a Harness-orchestrated loop. Their work also includes integrating the ARCHE execution workflow with the computational toolbox. The resulting architecture supports isolated investigation sessions, persistent runtime state, and recovery for long-running computational jobs.
-- **Computational toolbox refactoring:** Fangyuan Li refactored the computational toolbox.
+- **Harness-based planning–execution–reflection architecture:** Shijie Wang (王诗杰) and Yifei Cheng (程亦飞). They organized planning, execution, evidence collection, and reflective review after hypothesis formation into a Harness-orchestrated loop. Their work also includes integrating the ARCHE execution workflow with the computational toolbox. The resulting architecture supports isolated investigation sessions, persistent runtime state, and recovery for long-running computational jobs.
+- **Computational toolbox refactoring:** Fangyuan Li (李方圆) refactored the computational toolbox.
 
 ## What ARCHE can do
 
