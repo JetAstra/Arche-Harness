@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "raw_result": {"$arche_task_relative_path": "outputs/sdf_to_gjf_none_completed/result.gjf"},
+  "artifact_refs": [
+    {"path": "outputs/sdf_to_gjf_none_completed/result.gjf", "sha256": "686b5f4c720a30a1918b8c47e6b72d570aec13da03a12445b5cf19a1bc0ef94a"}
+  ],
+  "normalized_execution_step": {
+    "tool_name": "sdf_to_gjf",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": true,
+      "value": "outputs/sdf_to_gjf_none_completed/result.gjf",
+      "output_artifacts": ["outputs/sdf_to_gjf_none_completed/result.gjf"]
+    },
+    "output_files": ["outputs/sdf_to_gjf_none_completed/result.gjf"],
+    "validation": {"checks": {"real_tool.success": true}}
+  },
+  "gaussian_execution_receipt": null
+}

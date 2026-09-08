@@ -1,0 +1,20 @@
+{
+  "ash_source_path": "vendor/ash-0.95",
+  "ash_source_policy": "unchanged repository-local vendor/ash-0.95 source installed without dependencies",
+  "ash_source_sha256": {
+    "ash/interfaces/interface_fairchem.py": "77174e3920c01eb9897678624e8ec5836af28193bf34f8d795a3e77d81563563",
+    "ash/knarr/KNARRatom/utilities.py": "c4824c1e197f23005a38281ce1af9d0ddbb0bc05a6d9d391818046d74b9ab19b",
+    "pyproject.toml": "840a1e022f234a4c732f34a6df18a396b45c2c9485d82c85a433763eac12c46b"
+  },
+  "packages": {
+    "ase": "3.29.0",
+    "ash": "0.95",
+    "fairchem-core": "2.21.0",
+    "numpy": "2.3.5",
+    "rdkit": "2025.3.6",
+    "rxnmapper": "0.4.2",
+    "torch": "2.8.0+cpu"
+  },
+  "platform": "Linux-5.15.0-119-generic-x86_64-with-glibc2.35",
+  "python": "3.11.15"
+}

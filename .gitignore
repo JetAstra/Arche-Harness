@@ -1,0 +1,142 @@
+# macOS
+.DS_Store
+
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build / packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+.venv
+.venv-*/
+venv/
+env/
+.envs/
+
+# Local reproduction runtime
+/.runtime/
+/.minichem-workspace/
+/minichem_toolbox_caches.zip
+/minichem_model_cache_*.zip
+
+# 仅保存在当前开发机上的资料、配置和运行数据
+/local_data/
+
+# 当前开发机的代理协作规范
+/AGENTS.md
+
+# Local test/tool caches
+/.pytest_cache/
+/.ruff_cache/
+/_tool_artifacts/
+/_tool_results/
+/_tool_trace.jsonl
+/_toolbox_catalog.json
+/index/
+/outputs/
+/papers/
+
+# Runtime outputs and logs (controller/agents)
+outputs/
+**/outputs/
+**/multiagent_log.json
+**/bounded_closed_loop_result.json
+**/closed_loop_error.json
+**/closed_loop_resume_error.json
+**/waiting_gaussian_jobs_state.json
+
+# Local secrets/config
+.env
+.env.*
+config.local.env
+config.local.env.*
+!config.local.env.example
+
+# Test generated artifacts
+tests/temp/*
+tests/outputs/*
+tests/reports/*
+
+# Agent-generated runtime artifacts
+src/chemistry_multiagent/agents/outputs/*
+
+# Keep intentional placeholder directories/files trackable
+!tests/temp/
+!tests/temp/.gitkeep
+!tests/outputs/
+!tests/outputs/.gitkeep
+!tests/reports/
+!tests/reports/.gitkeep
+!src/chemistry_multiagent/agents/outputs/
+!src/chemistry_multiagent/agents/outputs/.gitkeep
+
+# Gaussian/runtime job state artifacts
+.gaussian_job_state_*.json
+*.chk
+*.fchk
+*.rwf
+*.int
+*.d2e
+*.fort
+fort.*
+
+# 本地 Gaussian 与 memory 实验产物
+/src/chemistry_multiagent/agents/gaussian_jobs/
+/data/tool_catalog/
+/*.gjf
+/*.log
+/*.sdf
+/*.xyz
+/*.ygg
+/ASH_Optimizer.result
+/*.exitcode
+/run_[0-9]*.sh
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+
+# 未纳入当前实现的本地历史副本
+/src_old/
+
+# Nested VCS metadata from vendored snapshots
+**/.git/
+
+# Notebook and editor artifacts
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# 常见模型权重文件
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# 本地 CodeGraph 索引数据库
+.codegraph/
+
+# 持久化的隔离开发工作树
+.worktrees/
+
+# 本地历史代码包与运行产物归档
+# 这里仅用于整理开发机上的旧文件，不作为项目源码提交。
+/仓库归档/*
+!/仓库归档/历史代码包/
+/仓库归档/历史代码包/*
+!/仓库归档/历史代码包/legacy_tool_tests/
+!/仓库归档/历史代码包/legacy_tool_tests/**
+
+# Run Bundle 只提交固定目录说明，动态运行文件全部忽略。
+!/outputs/
+/outputs/*
+!/outputs/README.md
+!/outputs/runs/
+/outputs/runs/*
+!/outputs/runs/README.md

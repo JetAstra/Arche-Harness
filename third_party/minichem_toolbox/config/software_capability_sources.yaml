@@ -1,0 +1,37 @@
+schema_version: 1
+cache_root: .mini_software_cache/documentation
+status_levels: [documented, installed, adapted, validated]
+software:
+  rdkit:
+    display_name: RDKit
+    aliases: [RDKit, rdkit, rdkit_etkdg, rdkit_gasteiger]
+  openbabel:
+    display_name: Open Babel
+    aliases: [Open Babel, openbabel, obabel]
+  xtb:
+    display_name: xTB
+    aliases: [xTB, xtb]
+  crest:
+    display_name: CREST
+    aliases: [CREST, crest]
+  gaussian:
+    display_name: Gaussian 16
+    aliases: [Gaussian, Gaussian 09, Gaussian 16, g09, g16]
+  goodvibes:
+    display_name: GoodVibes
+    aliases: [GoodVibes, goodvibes]
+  pysisyphus:
+    display_name: pysisyphus
+    aliases: [pysisyphus, pysis]
+  multiwfn:
+    display_name: Multiwfn
+    aliases: [Multiwfn, Multiwfn_noGUI]
+  cclib:
+    display_name: cclib
+    aliases: [cclib]
+  qcelemental:
+    display_name: QCElemental
+    aliases: [QCElemental, qcelemental]
+  sella:
+    display_name: Sella
+    aliases: [Sella, sella]

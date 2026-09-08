@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 只解包仓库随附的固定 Codex 版本，并在 runtime 中还原官方 vendor 相对布局。
+# 入口、code-mode host 和资源必须位于同一布局中，否则 SDK 可以启动 app-server，
+# 但工具回合会在本地执行阶段失败。
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(CDPATH= cd -- "$SCRIPT_DIR/../../../.." && pwd)"
+TARGET_TRIPLE="x86_64-unknown-linux-musl"
+PACKAGE_MANIFEST="$SCRIPT_DIR/codex-package.json"
+EXPECTED_PACKAGE_MANIFEST_SHA256="0b3f869f9fbd009f4d0c68c68ab50d53778855899b19106a607c6cd1861637a3"
+CACHE_ROOT="${ARCHE_CODEX_RUNTIME_ROOT:-$REPO_ROOT/local_data/runtime/codex_cli/0.149.0/linux-x64}"
+VENDOR_ROOT="$CACHE_ROOT/vendor/$TARGET_TRIPLE"
+TARGET="$VENDOR_ROOT/bin/codex"
+
+if ! command -v sha256sum >/dev/null 2>&1; then
+  echo "运行 Codex 0.149.0 需要 sha256sum" >&2
+  exit 1
+fi
+if ! command -v xz >/dev/null 2>&1; then
+  echo "运行 Codex 0.149.0 需要 xz 解压工具" >&2
+  exit 1
+fi
+
+if [[ ! -r "$PACKAGE_MANIFEST" ]]; then
+  echo "Codex 0.149.0 布局清单不存在：$PACKAGE_MANIFEST" >&2
+  exit 1
+fi
+actual_package_manifest_sha256="$(sha256sum "$PACKAGE_MANIFEST" | awk '{print $1}')"
+if [[ "$actual_package_manifest_sha256" != "$EXPECTED_PACKAGE_MANIFEST_SHA256" ]]; then
+  echo "Codex 0.149.0 布局清单校验失败" >&2
+  exit 1
+fi
+
+verify_archive_sha256() {
+  local archive="$1"
+  local expected_sha256="$2"
+  local actual_sha256
+  if [[ ! -r "$archive" ]]; then
+    echo "Codex 0.149.0 组件归档不存在：$archive" >&2
+    exit 1
+  fi
+  actual_sha256="$(sha256sum "$archive" | awk '{print $1}')"
+  if [[ "$actual_sha256" != "$expected_sha256" ]]; then
+    echo "Codex 0.149.0 组件归档校验失败：$archive" >&2
+    exit 1
+  fi
+}
+
+install_component() {
+  local archive="$1"
+  local runtime_relative_path="$2"
+  local expected_archive_sha256="$3"
+  local expected_binary_sha256="$4"
+  local target_path="$CACHE_ROOT/$runtime_relative_path"
+  local temporary_target
+  local actual_binary_sha256
+
+  verify_archive_sha256 "$SCRIPT_DIR/$archive" "$expected_archive_sha256"
+  mkdir -p "$(dirname -- "$target_path")"
+  if [[ -x "$target_path" ]]; then
+    actual_binary_sha256="$(sha256sum "$target_path" | awk '{print $1}')"
+    if [[ "$actual_binary_sha256" == "$expected_binary_sha256" ]]; then
+      return
+    fi
+  fi
+
+  temporary_target="$target_path.tmp.$$"
+  xz --decompress --stdout "$SCRIPT_DIR/$archive" > "$temporary_target"
+  chmod 755 "$temporary_target"
+  actual_binary_sha256="$(sha256sum "$temporary_target" | awk '{print $1}')"
+  if [[ "$actual_binary_sha256" != "$expected_binary_sha256" ]]; then
+    rm -f "$temporary_target"
+    echo "Codex 0.149.0 组件二进制校验失败：$runtime_relative_path" >&2
+    exit 1
+  fi
+  mv -f "$temporary_target" "$target_path"
+}
+
+install_package_manifest() {
+  local target_path="$VENDOR_ROOT/codex-package.json"
+  local temporary_target="$target_path.tmp.$$"
+  local actual_sha256
+  mkdir -p "$VENDOR_ROOT"
+  if [[ -f "$target_path" ]]; then
+    actual_sha256="$(sha256sum "$target_path" | awk '{print $1}')"
+    if [[ "$actual_sha256" == "$EXPECTED_PACKAGE_MANIFEST_SHA256" ]]; then
+      return
+    fi
+  fi
+  cp "$PACKAGE_MANIFEST" "$temporary_target"
+  actual_sha256="$(sha256sum "$temporary_target" | awk '{print $1}')"
+  if [[ "$actual_sha256" != "$EXPECTED_PACKAGE_MANIFEST_SHA256" ]]; then
+    rm -f "$temporary_target"
+    echo "Codex 0.149.0 运行时清单校验失败" >&2
+    exit 1
+  fi
+  mv -f "$temporary_target" "$target_path"
+}
+
+install_component \
+  "codex.bin.xz" \
+  "vendor/$TARGET_TRIPLE/bin/codex" \
+  "aa107e694a655b646642d8519e4d4783fb01bd4a5ed166f4238bf0157b9a4a68" \
+  "bbc3341e44c9ead340ed9570c17be936e37870f570751a941699ffd04d672827"
+install_component \
+  "codex-code-mode-host.bin.xz" \
+  "vendor/$TARGET_TRIPLE/bin/codex-code-mode-host" \
+  "1e53f1b2759e3863eb4aa482ce2578a63fa7a536ddba6338d8d7b5575c36cf28" \
+  "ba0f620a1d242a7555750e96c30c4c03b8b89ec0d4cff987e21bcd79fa18a363"
+install_component \
+  "bwrap.bin.xz" \
+  "vendor/$TARGET_TRIPLE/codex-resources/bwrap" \
+  "86018e9bd1de9095984b913f4b3a973e91c7c2e542048058e1aa0d166da9b912" \
+  "7df960565a0dece99240ea4b9d0e011307817f9f3b73176c7b71fda44fe84765"
+install_component \
+  "zsh.bin.xz" \
+  "vendor/$TARGET_TRIPLE/codex-resources/zsh/bin/zsh" \
+  "a3a3777b4402cf6f12051ed4686246f49a06fa969fc43ba59c88e06fd9e7f395" \
+  "67faaaa89242c4a332e16e508a1977cffc24bf7fca31d4411cdfd101f3831ef3"
+install_component \
+  "rg.bin.xz" \
+  "vendor/$TARGET_TRIPLE/codex-path/rg" \
+  "acbbf1c51e2320edacd7ff8c17cf9bbc90a456268f3974084ac77a03b0325b5a" \
+  "e62198eb19b136b88c330af83647b5a962cb99b6b1f066758568f12de1974849"
+install_package_manifest
+
+# 与官方 npm shim 一样向 native runtime 提供其包根；已有显式设置时保留调用方值。
+if [[ -z "${CODEX_MANAGED_PACKAGE_ROOT:-}" ]]; then
+  export CODEX_MANAGED_PACKAGE_ROOT="$CACHE_ROOT"
+fi
+
+exec "$TARGET" "$@"

@@ -1,0 +1,95 @@
+ACADEMIC AND NON-COMMERCIAL RESEARCH LICENSE
+Version 1.0
+
+Copyright (c) [2026] [Arvin]
+
+1. Definitions
+
+“Software” means the source code, scripts, configuration files, documentation, and other copyrightable materials in this repository, excluding third-party components that are subject to their own separate licenses.
+
+“Non-Commercial Use” means use solely for academic research, scholarly evaluation, teaching, classroom instruction, degree-related study, non-commercial reproducibility, and other non-profit research activities, where neither the user nor any third party receives commercial advantage, monetary compensation, service revenue, or other commercial benefit from the use of the Software.
+
+“Commercial Use” means any use of the Software, in whole or in part:
+(a) in or for a product, platform, or service that is sold, licensed, subscription-based, fee-based, or otherwise commercialized;
+(b) in support of paid consulting, contract research for commercial benefit, or commercial service delivery;
+(c) by or for a for-profit entity for internal commercial operations, product development, or service enablement;
+(d) to provide hosted, managed, API-based, or software-as-a-service access;
+(e) for benchmarking, marketing, or promotional purposes in connection with a commercial offering;
+(f) for redistribution as part of a commercial package, toolkit, or deliverable.
+
+2. License Grant
+
+Subject to the terms of this License, the Licensor grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to:
+
+(a) access, download, and use the Software for Non-Commercial Use only;
+(b) reproduce the Software for Non-Commercial Use only;
+(c) modify the Software and create derivative works for Non-Commercial Use only; and
+(d) share unmodified or modified copies of the Software with other users solely for Non-Commercial Use, provided that:
+    (i) this License is included with the redistributed Software,
+    (ii) all copyright, attribution, and notice text is preserved, and
+    (iii) you do not impose additional permissions that expand use beyond this License.
+
+3. Conditions
+
+You must:
+
+(a) retain this License and all copyright notices in any copy or substantial portion of the Software;
+(b) clearly mark any modifications you make;
+(c) cite the associated academic publication(s), if identified in the repository README or CITATION file, in scholarly uses where citation is customary;
+(d) comply with all applicable laws and regulations; and
+(e) ensure that any recipient of the Software understands that the Software is provided only under this License.
+
+4. Restrictions
+
+You may not, without prior written permission from the Licensor:
+
+(a) use the Software for any Commercial Use;
+(b) sell, license, sublicense, rent, lease, or commercially distribute the Software;
+(c) incorporate the Software into any commercial product, commercial workflow, or commercial service;
+(d) provide the Software as part of a hosted, managed, cloud, API, platform, or SaaS offering;
+(e) use the Software to provide paid services or paid consulting deliverables;
+(f) remove, alter, or obscure copyright, attribution, or notice text;
+(g) represent that the Licensor, authors, institutions, or contributors endorse you or your use of the Software; or
+(h) use any names, logos, trademarks, or institutional identifiers of the Licensor except as required for accurate scholarly attribution.
+
+5. Third-Party Components
+
+This repository may include or reference third-party software, models, data, binaries, or other materials under separate license terms.
+
+This License applies only to material for which the Licensor has the right to grant this License. It does not replace, override, or modify the license terms of any third-party component. You are solely responsible for reviewing and complying with the licenses of any such third-party materials.
+
+6. No Patent License
+
+No express or implied patent license is granted under this License.
+
+7. Termination
+
+This License terminates automatically if you violate any term of this License.
+
+Upon termination, you must cease use and distribution of the Software and destroy or remove all copies in your possession or control, except to the extent retention is required by law or institutional recordkeeping policy.
+
+8. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, OR PERFORMANCE.
+
+THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL MEET YOUR REQUIREMENTS, OPERATE WITHOUT INTERRUPTION, OR BE ERROR-FREE.
+
+9. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE LICENSOR OR ANY AUTHOR, CONTRIBUTOR, OR AFFILIATED INSTITUTION BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+10. Academic and Public Release Notice
+
+The Software is made publicly available to support academic research, scholarly scrutiny, teaching, and non-commercial reproducibility. Public availability does not mean the Software is open source under any OSI-approved definition, and no permission for Commercial Use is granted by this License.
+
+11. Request for Commercial Use
+
+Requests for commercial use, commercial licensing, industry partnerships, or other uses outside the scope of this License must be directed to:
+
+[Dong Li / arvinlee826@gmail.com / Shanghai Artificial Intelligence Laboratory & Harbin Institute of Technology ]
+
+12. Governing Interpretation
+
+If any provision of this License is held unenforceable, the remaining provisions shall remain in effect to the maximum extent permitted by law. This License shall be interpreted to give maximum effect to the Licensor’s intent to permit Non-Commercial Use while prohibiting Commercial Use unless separately authorized in writing.
+
+END OF TERMS

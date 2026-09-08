@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "raw_result": {"$arche_task_relative_path": "outputs/smiles2sdf_none_completed/result.sdf"},
+  "artifact_refs": [
+    {"path": "outputs/smiles2sdf_none_completed/result.sdf", "sha256": "eb16684fdd75fcbf7091ed32d91f1d4344aa53b7c15371343ad96f507ae6f72a"}
+  ],
+  "normalized_execution_step": {
+    "tool_name": "smiles2sdf",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": true,
+      "value": "outputs/smiles2sdf_none_completed/result.sdf",
+      "output_artifacts": ["outputs/smiles2sdf_none_completed/result.sdf"]
+    },
+    "output_files": ["outputs/smiles2sdf_none_completed/result.sdf"],
+    "validation": {"checks": {"real_tool.success": true}}
+  },
+  "gaussian_execution_receipt": null
+}

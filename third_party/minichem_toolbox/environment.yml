@@ -1,0 +1,24 @@
+name: minichem
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  # ASH 0.95 needs NumPy <2.4; FairChem 2.21 requires NumPy >=2.0,<2.5.
+  - numpy=2.3.5
+  - scipy>=1.14,<2
+  - ase=3.29.0
+  - rdkit=2025.03.6
+  - openbabel=3.1.1
+  - xtb=6.7.1
+  - crest=3.0.2
+  - cclib=1.8.1
+  - qcelemental=0.50.4
+  - pandas
+  - pyarrow
+  - pydantic>=2
+  - pyyaml
+  - jsonschema
+  - numexpr
+  - packaging
+  - uvicorn

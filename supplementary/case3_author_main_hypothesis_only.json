@@ -1,0 +1,21 @@
+{
+  "schema": "arche.case3.author_main_hypothesis_only",
+  "schema_version": 1,
+  "fixture_id": "case3_author_main_hypothesis_only",
+  "case_profile": "case3_fixed_reproduction",
+  "question_binding": {
+    "method": "sha256_utf8_exact_question",
+    "question_sha256": "11322b1df060525140b7542b1b5665b3320cf90529057f7d010acf263283b379"
+  },
+  "hypothesis": {
+    "hypothesis_id": "author-case3-main-hypothesis",
+    "strategy_name": "Steric and Electronic Control of Selectivity by Ligand Substitution",
+    "reasoning": "邻位取代基靠近配位区域时，会造成比未取代、间位或对位取代更强的局部空间拥挤，并可能同时改变金属中心附近的电子分布。由此，邻位取代可能改变与氢迁移相关变化的相对稳定性，使迁移路径更有利；其余取代模式则更有利于原位路径。模型应从题面独立提出可证伪的验证方案，所有结论必须来自本次实际计算。"
+  },
+  "provenance": {
+    "author_source_document_id": "case3_author_primary_mechanistic_report",
+    "primary_pdf_sha256": "1bd895242da54eee460e0220d728e4ce97b8fa9bb6c71cc75b4531a1b65dd496",
+    "primary_pages": [12, 13],
+    "independent_author_complement_pdf_sha256": "b2f5aacac2b58b62baaa8b43edff451ddffd2520c319da6c39031e2e86eed70f"
+  }
+}

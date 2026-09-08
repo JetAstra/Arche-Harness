@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openai-codex"
+version = "0.149.0+arche.1"
+description = "OpenAI Codex Python SDK sourced from the official rust-v0.149.0 tree"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "OpenAI" }]
+dependencies = ["pydantic>=2.12,<3"]
+
+[project.urls]
+Homepage = "https://github.com/openai/codex"
+Repository = "https://github.com/openai/codex/tree/rust-v0.149.0/sdk/python"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+openai_codex = ["py.typed"]

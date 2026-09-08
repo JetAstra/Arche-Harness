@@ -1,0 +1,50 @@
+schema_version: 2
+name: gaussian_test
+description: 模拟需要等待和恢复的 Gaussian 工具。
+entrypoint: tests.test_execution_contract:run_gaussian_test
+job_types:
+  - opt
+input_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    mode:
+      type: string
+    text:
+      type: string
+  required: []
+result_semantics:
+  length: 写入测试文件的文本字符数。
+artifact_contract:
+  inputs: []
+  outputs:
+    - name: output
+      kind: file
+      media_type: text/plain
+      required: true
+checks:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    artifact_created:
+      type: boolean
+program_gate:
+  opt:
+    required:
+      - artifact_created
+    expected:
+      artifact_created: true
+side_effect: gaussian_process
+retry_safe: false
+requirements:
+  imports: []
+  executables: []
+usage:
+  summary: 模拟等待、恢复与文件输出，供统一执行合同测试使用。
+  evidence:
+    - check: artifact_created
+      meaning: 测试入口报告目标文件已经创建。
+  limitations:
+    - 这是不执行真实 Gaussian 的测试工具。

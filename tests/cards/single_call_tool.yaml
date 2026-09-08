@@ -1,0 +1,35 @@
+schema_version: 2
+name: single_call_tool
+description: 每次调用都会抛出受控异常。
+entrypoint: tests.test_execution_tool_budget:run_failing_tool
+job_types:
+  - none
+input_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties: {}
+  required: []
+result_semantics: {}
+artifact_contract:
+  inputs: []
+  outputs: []
+checks:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties: {}
+program_gate:
+  none:
+    required: []
+    expected: {}
+side_effect: filesystem
+retry_safe: true
+requirements:
+  imports: []
+  executables: []
+usage:
+  summary: 抛出受控异常，供单次 operation 调用预算测试使用。
+  evidence: []
+  limitations:
+    - 这是始终失败且不表达计算化学能力的测试工具。

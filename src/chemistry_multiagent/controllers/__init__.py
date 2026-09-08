@@ -1,0 +1,112 @@
+"""当前 research_task 应用与工作流 Controller 的公开入口。"""
+
+from .investigation_v2_module_controller import (
+    ControllerAdvanced,
+    ControllerAwaitingResearcherConfirmation,
+    ControllerFailed,
+    ControllerLeaseLostResult,
+    ControllerResult,
+    ControllerSuspended,
+    HarnessModuleRunner,
+    ResearchWorkflowControllerContractError,
+    ResearchWorkflowControllerError,
+    ResearchWorkflowControllerIntegrityConflict,
+    ResearchWorkflowController,
+    AUTHOR_MODULE_SEQUENCE,
+    MODULE_SEQUENCE,
+    ModuleCompleted,
+    ModuleFailed,
+    ModuleInvocationOutcome,
+    ModuleInvocationRequest,
+    ModuleInvocationRunner,
+    ModuleSuspended,
+    RecoveryStatus,
+    RecoveryVerification,
+    ResearchTaskClosedResult,
+    ResearchTaskFailedResult,
+    build_module_input_digest,
+    normalize_module_kind,
+)
+from .investigation_v2_confirmation import (
+    CONFIRMATION_MODULE_KIND,
+    CONFIRMATION_REASON_CODE,
+    CONFIRMATION_TASK_CONTRACT_VERSION,
+    HypothesisConfirmationError,
+    HypothesisConfirmationService,
+    HypothesisConfirmationStateConflict,
+    HypothesisConfirmationSubmission,
+    HypothesisConfirmationView,
+    ResearchMaterialUpload,
+)
+from .controller_lease import (
+    ControllerLease,
+    ControllerLeaseBusy,
+    ControllerLeaseBusyError,
+    ControllerLeaseError,
+    ControllerLeaseIntegrityConflict,
+    ControllerLeaseIntegrityError,
+    ControllerLeaseLost,
+    ControllerLeaseLostError,
+    ControllerLeaseRecord,
+    LeaseBusy,
+    LeaseLost,
+)
+
+
+def __getattr__(name: str):
+    """按需加载应用入口，避免 ``python -m`` 预先执行目标模块。"""
+
+    if name == "ResearchTaskApplication":
+        from .chemistry_multiagent_controller import ResearchTaskApplication
+
+        return ResearchTaskApplication
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+__all__ = [
+    "ControllerAdvanced",
+    "ControllerAwaitingResearcherConfirmation",
+    "ControllerFailed",
+    "ControllerLease",
+    "ControllerLeaseBusy",
+    "ControllerLeaseBusyError",
+    "ControllerLeaseError",
+    "ControllerLeaseIntegrityConflict",
+    "ControllerLeaseIntegrityError",
+    "ControllerLeaseLost",
+    "ControllerLeaseLostError",
+    "ControllerLeaseLostResult",
+    "ControllerLeaseRecord",
+    "LeaseBusy",
+    "LeaseLost",
+    "ControllerResult",
+    "ControllerSuspended",
+    "HarnessModuleRunner",
+    "ResearchWorkflowControllerContractError",
+    "ResearchWorkflowControllerError",
+    "ResearchWorkflowControllerIntegrityConflict",
+    "ResearchWorkflowController",
+    "ResearchTaskApplication",
+    "AUTHOR_MODULE_SEQUENCE",
+    "MODULE_SEQUENCE",
+    "ModuleCompleted",
+    "ModuleFailed",
+    "ModuleInvocationOutcome",
+    "ModuleInvocationRequest",
+    "ModuleInvocationRunner",
+    "ModuleSuspended",
+    "RecoveryStatus",
+    "RecoveryVerification",
+    "ResearchTaskClosedResult",
+    "ResearchTaskFailedResult",
+    "build_module_input_digest",
+    "normalize_module_kind",
+    "CONFIRMATION_MODULE_KIND",
+    "CONFIRMATION_REASON_CODE",
+    "CONFIRMATION_TASK_CONTRACT_VERSION",
+    "HypothesisConfirmationError",
+    "HypothesisConfirmationService",
+    "HypothesisConfirmationStateConflict",
+    "HypothesisConfirmationSubmission",
+    "HypothesisConfirmationView",
+    "ResearchMaterialUpload",
+]

@@ -1,0 +1,9 @@
+name: arche
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy=2.3.5
+  - pip:
+      - -r requirements.txt

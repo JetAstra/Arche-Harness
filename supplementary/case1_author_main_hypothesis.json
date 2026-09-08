@@ -1,0 +1,77 @@
+{
+  "schema": "arche.case1.author_main_hypothesis",
+  "schema_version": 1,
+  "fixture_id": "case1_author_main_hypothesis",
+  "case_profile": "case1_fixed_reproduction",
+  "question_binding": {
+    "method": "sha256_utf8_exact_question",
+    "question_sha256": "5c6bfd7415c56e15b42e3f9646aa7778406b81cbc4cc80c02e140da14977db39"
+  },
+  "context_binding": {
+    "method": "sha256_canonical_normalized_calculation_unit",
+    "calculation_unit_sha256": "2187e9db1f52b7589719b95c8b4215de238b27d5e75e818991f8a9a7ec46a70e"
+  },
+  "calculation_unit": {
+    "scope": "只验证给定的关键亲核加成/C–C 成键计算单元",
+    "reactants": [
+      "C=C(C)N1CCCC1C[NH+]1CCCC1",
+      "O=Cc1ccc([N+](=O)[O-])cc1"
+    ],
+    "products": [
+      "C/C(C[C@@H](O)c1ccc([N+](=O)[O-])cc1)=[N+]1/CCCC1CN1CCCC1"
+    ],
+    "charge": 1,
+    "multiplicity": 1,
+    "solvent": "acetone",
+    "temperature_k": 303.15,
+    "needs_ts": true,
+    "needs_irc": true,
+    "transition_state_initial_guess_source": "search_transition_state_path",
+    "method_requirements": {
+      "endpoint": {
+        "method": "B3LYP",
+        "basis": "6-31G(d)",
+        "solvent": "acetone",
+        "temperature_k": 303.15,
+        "jobs": ["opt", "freq"]
+      },
+      "transition_state": {
+        "method": "B3LYP",
+        "basis": "6-31G(d)",
+        "solvent": "acetone",
+        "temperature_k": 303.15,
+        "jobs": ["opt", "freq"]
+      },
+      "irc": {
+        "method": "B3LYP",
+        "basis": "6-31G(d)",
+        "solvent": "acetone",
+        "temperature_k": 303.15,
+        "jobs": ["irc"],
+        "calcfc": true,
+        "maxpoints": 80,
+        "recalc": 5
+      }
+    }
+  },
+  "retrieval_context": {
+    "retrieval_source": "author_fixture",
+    "chemistry_context_summary": "Case 1 反应物、产物、溶剂、温度和计算阶段由结构化计算单元冻结；本文献上下文只作为作者假设的来源证据。"
+  },
+  "hypothesis": {
+    "hypothesis_id": "author-case1-main-hypothesis",
+    "strategy_name": "比较两条对映路径的关键 C–C 成键过渡态",
+    "reasoning": "分别构造并优化两条对映路径的关键 C–C 成键过渡态；对每个过渡态检查恰有一个虚频，并用反应物与产物连通性验证其确属目标反应通道；在 30 °C 比较两条路径的 Gibbs 活化自由能差，以此预测对映选择性。"
+  },
+  "selection": {
+    "selection_status": "selected",
+    "selection_method": "author_document_selection",
+    "selection_reason": "作者资料只提供一条完整、可执行且覆盖过渡态优化与连通性验证的主假设；不复制为多个独立假设。"
+  },
+  "provenance": {
+    "author_source_document_id": "case1_author_primary_mechanistic_report",
+    "primary_pdf_sha256": "98b98fc1c0cde1a07825508c7682dbe6fca07748f3376a48c2f1ce5862a2cdff",
+    "primary_pages": [20, "24-25"],
+    "independent_author_complement_pdf_sha256": "5e602e3a3a96c0f23239a35244f6faf51d4b48aaecc05660956612a0657112fb"
+  }
+}

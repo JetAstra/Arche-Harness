@@ -1,0 +1,158 @@
+schema_version: 1
+policy:
+  source_of_truth: explicit_native_manual_example_contracts
+  argument_file_role_inference: false
+software:
+  openbabel:
+    commands:
+      obabel:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - -ixyz
+        - input.xyz
+        - -osdf
+        - -O
+        - output.sdf
+        inputs:
+        - input.xyz
+        outputs:
+        - output.sdf
+        stdin_target: null
+        resource_limits:
+          cpu_cores: 1
+          memory_mb: 2048
+          gpu_count: 0
+  crest:
+    commands:
+      crest:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - input.xyz
+        - --gfn2
+        - --T
+        - '4'
+        inputs:
+        - input.xyz
+        outputs: []
+        stdin_target: null
+        resource_limits:
+          cpu_cores: 4
+          memory_mb: 2048
+          gpu_count: 0
+  xtb:
+    commands:
+      xtb:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - structure.xyz
+        - --gfn
+        - '2'
+        - --sp
+        - --chrg
+        - '0'
+        - --uhf
+        - '0'
+        inputs:
+        - structure.xyz
+        outputs: []
+        stdin_target: null
+        resource_limits:
+          cpu_cores: 1
+          memory_mb: 2048
+          gpu_count: 0
+  multiwfn:
+    commands:
+      Multiwfn_noGUI:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - wavefunction.fchk
+        inputs:
+        - commands.txt
+        - wavefunction.fchk
+        outputs: []
+        stdin_target: wavefunction.fchk
+        resource_limits:
+          cpu_cores: 1
+          memory_mb: 2048
+          gpu_count: 0
+  gaussian:
+    commands:
+      g16:
+        enabled: true
+        example_kind: scientific_template
+        arguments: []
+        inputs:
+        - input.com
+        outputs: []
+        stdin_target: input.com
+        resource_policy:
+          mode: service_managed_full_capacity
+          concurrency: serial
+          agent_controllable: false
+      formchk:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - input.chk
+        - output.fchk
+        inputs:
+        - input.chk
+        - output.fchk
+        outputs: []
+        stdin_target: null
+        resource_policy:
+          mode: service_managed_full_capacity
+          concurrency: serial
+          agent_controllable: false
+  goodvibes:
+    commands:
+      goodvibes:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - output.log
+        - --temp
+        - '298.15'
+        - --conc
+        - '1.0'
+        - --qs
+        - grimme
+        - --qh
+        - --fs
+        - '100'
+        - --fh
+        - '100'
+        - -v
+        - '0.99'
+        - --zpe-vscal
+        - '0.98'
+        - --json
+        - result.json
+        inputs:
+        - output.log
+        outputs:
+        - result.json
+        stdin_target: null
+        resource_limits:
+          cpu_cores: 1
+          memory_mb: 2048
+          gpu_count: 0
+  pysisyphus:
+    commands:
+      pysis:
+        enabled: true
+        example_kind: scientific_template
+        arguments:
+        - config.yaml
+        inputs:
+        - config.yaml
+        outputs: []
+        stdin_target: null
+        resource_limits:
+          cpu_cores: 1
+          memory_mb: 2048
+          gpu_count: 0

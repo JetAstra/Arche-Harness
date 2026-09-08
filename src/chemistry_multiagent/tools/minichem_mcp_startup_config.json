@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "transport": "streamable_http",
+  "endpoint": "http://127.0.0.1:9010/mcp",
+  "deployment": {
+    "type": "bundled_toolbox",
+    "toolbox_root": "third_party/minichem_toolbox",
+    "description": "MiniChem 服务由仓库 third_party 中的工具箱提供，并使用 ARCHE 标准环境启动。"
+  },
+  "server": {
+    "startup_script": "third_party/minichem_toolbox/scripts/start_mcp.sh",
+    "arguments": [
+      "--transport",
+      "streamable_http",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "9010"
+    ],
+    "environment": {
+      "RESEARCHCHEMBENCH_AVAILABLE_CPU_CORES": "60",
+      "RESEARCHCHEMBENCH_AVAILABLE_MEMORY_MB": "320000",
+      "RESEARCHCHEMBENCH_AVAILABLE_GPU_COUNT": "1"
+    },
+    "workspace_environment": [
+      "MINICHEM_MCP_WORKSPACE",
+      "RESEARCHCHEMBENCH_WORKSPACE"
+    ]
+  },
+  "adapter": {
+    "endpoint_environment": "MINICHEM_MCP_ENDPOINT",
+    "default_endpoint": "http://127.0.0.1:9010/mcp"
+  }
+}

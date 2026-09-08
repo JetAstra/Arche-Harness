@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minichem-mcp-tools"
+version = "0.3.0+arche.20260813"
+description = "Portable three-layer chemistry toolbox for Gaussian-centered mechanism tasks."
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0",
+    "fastmcp>=2.0",
+    "jsonschema>=4.0",
+    "numexpr>=2.0",
+    "openai>=2.43,<3",
+    "packaging>=23.0",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "uvicorn>=0.30",
+]
+
+[project.optional-dependencies]
+chemistry = [
+    "ase>=3.22",
+    "cclib>=1.8",
+    "geometric==1.1.1",
+    "numpy>=2.0,<2.4",
+    "qcelemental>=0.29",
+    "rdkit",
+    "rmsd",
+    "scipy>=1.11",
+    "sella>=2.3",
+]
+arche-reaction-mapping = [
+    "rxnmapper==0.4.2",
+    "rdkit",
+    "setuptools<81",
+    "transformers>=4.30,<5",
+]
+arche-uma = ["ase>=3.26", "fairchem-core==2.21.0", "torch==2.8.0"]
+test = ["pytest>=8.0"]
+semantic-search = ["numpy>=1.24", "onnxruntime>=1.17", "tokenizers>=0.15"]
+
+[project.scripts]
+minichem-mcp-server = "minichem_mcp_tools.server:main"
+minichem-tool = "minichem_mcp_tools.tool_manager:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["minichem_toolbox*", "minichem_mcp_tools*"]
+
+[tool.setuptools.package-data]
+minichem_mcp_tools = ["tool_config.json"]
+minichem_toolbox = ["data/*.json", "vendor/arche_author_tools/LICENSE"]

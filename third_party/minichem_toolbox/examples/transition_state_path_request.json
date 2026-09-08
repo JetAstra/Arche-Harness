@@ -1,0 +1,20 @@
+{
+  "action_id": "search_transition_state_path",
+  "backend_id": "transition_state_path_search",
+  "inputs": {
+    "reactants": [
+      "C=C(C)N1CCCC1C[NH+]1CCCC1",
+      "O=Cc1ccc([N+](=O)[O-])cc1"
+    ],
+    "products": [
+      "C/C(C[C@@H](O)c1ccc([N+](=O)[O-])cc1)=[N+]1/CCCC1CN1CCCC1"
+    ],
+    "main_force_field": "MMFF",
+    "target_force_field": "UMA"
+  },
+  "method_spec": {},
+  "action_settings": {},
+  "resource_limits": {
+    "gpu_count": 1
+  }
+}

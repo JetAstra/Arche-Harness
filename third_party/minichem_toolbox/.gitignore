@@ -1,0 +1,17 @@
+.mini_software_cache/*
+!.mini_software_cache/README.md
+!.mini_software_cache/manifest.json
+
+.envs/
+.tmp/
+
+.mini_model_cache/*
+!.mini_model_cache/README.md
+!.mini_model_cache/manifest.json
+
+tests/results/
+
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/

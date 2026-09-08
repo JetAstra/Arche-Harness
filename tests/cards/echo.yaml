@@ -1,0 +1,47 @@
+schema_version: 2
+name: echo
+description: Repeat text
+entrypoint: tests.test_tool_contracts:echo
+job_types:
+  - none
+input_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    text:
+      type: string
+    repeat:
+      type: integer
+  required:
+    - text
+result_semantics:
+  text: 重复操作生成的最终文本。
+artifact_contract:
+  inputs: []
+  outputs: []
+checks:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    text_emitted:
+      type: boolean
+program_gate:
+  none:
+    required:
+      - text_emitted
+    expected:
+      text_emitted: true
+side_effect: none
+retry_safe: true
+requirements:
+  imports: []
+  executables: []
+usage:
+  summary: 重复输入文本，供工具执行合同单元测试使用。
+  evidence:
+    - check: text_emitted
+      meaning: 文本重复操作已完成并返回结果。
+  limitations:
+    - 这是不产生文件的测试工具，不表达计算化学能力。

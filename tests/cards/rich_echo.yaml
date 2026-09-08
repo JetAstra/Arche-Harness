@@ -1,0 +1,60 @@
+schema_version: 2
+name: rich_echo
+description: Exercise supported input types
+entrypoint: tests.test_tool_contracts:rich_echo
+job_types:
+  - none
+input_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    values:
+      type: array
+      items:
+        type: integer
+    mode:
+      type: string
+      enum:
+        - fast
+        - safe
+    note:
+      anyOf:
+        - type: string
+        - type: "null"
+    scale:
+      anyOf:
+        - type: integer
+        - type: number
+  required:
+    - values
+    - mode
+result_semantics: {}
+artifact_contract:
+  inputs: []
+  outputs: []
+checks:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    accepted:
+      type: boolean
+program_gate:
+  none:
+    required:
+      - accepted
+    expected:
+      accepted: true
+side_effect: none
+retry_safe: true
+requirements:
+  imports: []
+  executables: []
+usage:
+  summary: 接收多种受支持的严格输入类型，供 Schema 合同单元测试使用。
+  evidence:
+    - check: accepted
+      meaning: 输入已通过严格 Schema 并被测试入口接受。
+  limitations:
+    - 这是不产生文件的测试工具，不表达计算化学能力。

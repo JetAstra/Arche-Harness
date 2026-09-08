@@ -1,0 +1,1 @@
+For a proposed transition state in solution, design a Gaussian workflow and explain how to validate whether the TS is physically meaningful.

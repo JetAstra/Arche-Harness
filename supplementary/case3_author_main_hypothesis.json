@@ -1,0 +1,69 @@
+{
+  "schema": "arche.case3.author_main_hypothesis",
+  "schema_version": 1,
+  "fixture_id": "case3_author_main_hypothesis",
+  "case_profile": "case3_fixed_reproduction",
+  "question_binding": {
+    "method": "sha256_utf8_exact_question",
+    "question_sha256": "11322b1df060525140b7542b1b5665b3320cf90529057f7d010acf263283b379"
+  },
+  "context_binding": {
+    "method": "sha256_canonical_normalized_calculation_unit_and_initial_calculation_structures",
+    "calculation_unit_sha256": "f6279755359db8e7f6c4211fefd417270cac5e1fee626ffb0d489cc6bfafffac",
+    "initial_calculation_structures_sha256": "6517e096fb2f0756145fa06a7e5435a4c5ed37cda061d6753b603137fe9316d6"
+  },
+  "calculation_unit": {
+    "scope": "作者发布初始几何复算：四种 2,2′-bipyridine 配体的 Br–N–N–H relaxed dihedral scan；只比较重新计算得到的曲线，不导入作者结果。",
+    "reactants": [
+      "unsubstituted 2,2′-bipyridine–Ni(II)–Br–H model",
+      "ortho-methyl 2,2′-bipyridine–Ni(II)–Br–H model",
+      "meta-methyl 2,2′-bipyridine–Ni(II)–Br–H model",
+      "para-methyl 2,2′-bipyridine–Ni(II)–Br–H model"
+    ],
+    "charge": 0,
+    "multiplicity": 1,
+    "solvent": "DMA",
+    "temperature_k": 298.15,
+    "needs_ts": false,
+    "needs_irc": false,
+    "method_requirements": {
+      "endpoint": {
+        "method": "wB97XD",
+        "basis": "def2SVP",
+        "solvent": "N,N-Dimethylacetamide",
+        "temperature_k": 298.15,
+        "jobs": ["opt"],
+        "symmetry": "NoSymm"
+      },
+      "scan": {
+        "method": "wB97XD",
+        "basis": "def2SVP",
+        "solvent": "N,N-Dimethylacetamide",
+        "temperature_k": 298.15,
+        "jobs": ["opt", "scan"],
+        "symmetry": "NoSymm"
+      }
+    }
+  },
+  "retrieval_context": {
+    "retrieval_source": "author_fixture",
+    "chemistry_context_summary": "Case 3 的四种配体模型、电子态、溶剂和 relaxed dihedral 比较范围由结构化计算单元冻结；作者材料只作为主假设的来源证据。"
+  },
+  "hypothesis": {
+    "hypothesis_id": "author-case3-main-hypothesis",
+    "strategy_name": "Steric Control of Hydride Departure via Ligand–Ni Dihedral Angle Scan",
+    "reasoning": "邻位甲基在四配位 Ni(II)-bipyridine-Br-H 模型的配位区域形成空间拥挤，使氢化物相对 N–N–Ni–Br 配位平面的面外扭转更容易发生。该假设把 H–N–N–Br（等价于 Br–N–N–H）二面角作为与氢迁移耦合的结构坐标：分别对未取代、邻位甲基、间位甲基和对位甲基配体优化匹配的模型，并执行 relaxed dihedral scan，比较相对能量曲线的能量上升、斜率和曲率。若邻位取代使面外扭转的能量代价更低，而其他配体保持更平面的高代价曲线，则该趋势支持邻位配体更有利于 migratory coupling、其余配体更有利于原位路径的解释。"
+  },
+  "selection": {
+    "selection_status": "selected",
+    "selection_method": "author_document_selection",
+    "selection_reason": "作者材料把 Br–N–N–H 面外扭转能量曲线作为最接近氢迁移结构变化、并可在四种配体间直接比较的主 descriptor；本夹具只导入这一条假设和一个组合。"
+  },
+  "provenance": {
+    "author_source_document_id": "case3_author_primary_mechanistic_report",
+    "primary_pdf_sha256": "1bd895242da54eee460e0220d728e4ce97b8fa9bb6c71cc75b4531a1b65dd496",
+    "primary_pages": [12, 13],
+    "independent_author_complement_pdf_sha256": "b2f5aacac2b58b62baaa8b43edff451ddffd2520c319da6c39031e2e86eed70f",
+    "published_execution_artifact_sha256": "718959095618dd644effbe09478d9dcf3ea3d7225320159015ef24e6ec21b95e"
+  }
+}

@@ -1,0 +1,50 @@
+schema_version: 2
+name: make_file
+description: 在受控目录生成一个测试文件。
+entrypoint: tests.test_execution_contract:run_file_tool
+job_types:
+  - none
+input_schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    mode:
+      type: string
+    text:
+      type: string
+  required: []
+result_semantics:
+  length: 写入测试文件的文本字符数。
+artifact_contract:
+  inputs: []
+  outputs:
+    - name: output
+      kind: file
+      media_type: text/plain
+      required: true
+checks:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: object
+  additionalProperties: false
+  properties:
+    artifact_created:
+      type: boolean
+program_gate:
+  none:
+    required:
+      - artifact_created
+    expected:
+      artifact_created: true
+side_effect: filesystem
+retry_safe: true
+requirements:
+  imports: []
+  executables: []
+usage:
+  summary: 在受控目录生成测试文件，供执行合同测试使用。
+  evidence:
+    - check: artifact_created
+      meaning: 测试入口报告目标文件已经创建。
+  limitations:
+    - 这是不表达计算化学能力的测试工具。

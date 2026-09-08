@@ -1,0 +1,31 @@
+# ARCHE 当前活动 Python 代码的依赖。
+#
+# 版本范围基于 Linux x86_64 / Python 3.11 已验证环境。
+# ARCHE 根项目依赖；MiniChem 工具箱的附加依赖由其独立环境声明。
+
+# --- 控制器、模型与协议 -------------------------------------------------------
+openai>=2.43,<3
+pydantic>=2.12,<3
+tenacity>=8.2,<10
+jsonschema>=4.23,<5
+mcp>=1.29,<2
+requests>=2.31,<3
+
+# --- Retrieval 与 Working Memory ---------------------------------------------
+# ARCHE 检索环境固定 NumPy 版本；MiniChem 的 FairChem/ASH 约束在工具箱环境中单独声明。
+numpy==2.3.5
+PyMuPDF>=1.27,<2
+faiss-cpu>=1.14,<2
+sentence-transformers==5.6.0
+
+# --- 测试 ---------------------------------------------------------------------
+pytest>=9.1,<10
+
+# --- 论文抓取 ---------------------------------------------------------------
+# 默认 PaperSearch 采用受控 PyPaperBot Scholar 路径，只依赖上面的 requests，
+# 并且只下载 Scholar 页面明确给出的公开 PDF。paper-scraper 仅保留为兼容 provider，
+# 不属于标准环境，也不参与默认运行。
+
+# --- 外部服务与非 pip 依赖 ----------------------------------------------------
+# MiniChem 仍作为独立 MCP 进程运行；其附加依赖由工具箱 requirements 声明，
+# `scripts/bootstrap_reproduction.sh` 在统一的 arche 标准环境中准备两侧依赖。

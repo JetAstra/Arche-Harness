@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "portable_root": ".mini_software_cache",
+  "components": {
+    "gaussian_16_c01": {
+      "license": "commercial; redistribution is not permitted by MiniChem",
+      "size_bytes": 12764545565,
+      "files": [
+        {
+          "path": "gaussian/g16/install/g16/g16",
+          "size_bytes": 127313512,
+          "sha256": "384f3baca38297d3f11ed2168bb9be836778fa4c5f5d07cb38751e3ed1a66db5"
+        },
+        {
+          "path": "gaussian/g16/install/g16/formchk",
+          "size_bytes": 127922688,
+          "sha256": "78dc9981fd170cc99d8052aa26471244e04fd2c8aea7d73aaf641c193e7b6bd5"
+        }
+      ]
+    },
+    "multiwfn_2026_7_15": {
+      "license": "upstream Multiwfn terms and citation requirements apply",
+      "size_bytes": 166848911,
+      "files": [
+        {
+          "path": "multiwfn/2026.7.15/Multiwfn_2026.7.15_bin_Linux_noGUI.zip",
+          "size_bytes": 30500702,
+          "sha256": "c5f399cf48cb2f7fedcba82396c564bb0873d2da385a84b12bbb35d0000cbf96"
+        },
+        {
+          "path": "multiwfn/2026.7.15/Multiwfn_2026.7.15_bin_Linux_noGUI/Multiwfn_noGUI",
+          "size_bytes": 41264837,
+          "sha256": "d7d2539dae7b8d2faf03ca473d856cf1936a7b8ca4fdcfbb3e1cfa5f45184030"
+        },
+        {
+          "path": "multiwfn/2026.7.15/Multiwfn_2026.7.15_bin_Linux_noGUI/settings.ini",
+          "size_bytes": 21537,
+          "sha256": "27bd99f96400a2ae00b9e34689cf048c3bcf34efd5b6fe8901f0cfae6ab1deb6"
+        },
+        {
+          "path": "multiwfn/2026.7.15/Multiwfn_2026.7.15_bin_Linux_noGUI/LICENSE.txt",
+          "size_bytes": 1254,
+          "sha256": "0846f4144fd66d07a5b17e340863147a6797bbec871114d804ae620ffd7e8360"
+        }
+      ]
+    }
+  }
+}

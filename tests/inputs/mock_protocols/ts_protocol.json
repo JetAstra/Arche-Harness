@@ -1,0 +1,63 @@
+{
+  "workflow_name": "TS_Test_Workflow",
+  "strategy_name": "TS_Test_Strategy",
+  "goal": "Validate a TS workflow skeleton",
+  "steps": [
+    {
+      "step_id": "step_1",
+      "step_name": "Generate_TS_Guess",
+      "description": "Use main to generate initial TS guess structure",
+      "tool": "main",
+      "inputs": "SMILES",
+      "expected_outputs": "XYZ",
+      "success_criteria": "A plausible TS guess XYZ is generated",
+      "error_handling_hint": "Try alternative reactive orientation"
+    },
+    {
+      "step_id": "step_2",
+      "step_name": "Generate_Gaussian_Code",
+      "description": "Generate Gaussian keywords and route section for TS search in acetone solvent",
+      "tool": "generate_gaussian_code",
+      "inputs": "question",
+      "expected_outputs": "route_section",
+      "success_criteria": "A valid TS route section is generated",
+      "error_handling_hint": "Revise functional, basis, solvent, or TS settings"
+    },
+    {
+      "step_id": "step_3",
+      "step_name": "Prepare_GJF",
+      "description": "Convert XYZ plus route section into Gaussian input",
+      "tool": "xyz_to_gjf",
+      "inputs": "XYZ + route_section",
+      "expected_outputs": "GJF",
+      "success_criteria": "A GJF file is created",
+      "error_handling_hint": "Check format conversion and route insertion"
+    },
+    {
+      "step_id": "step_4",
+      "step_name": "Run_Gaussian_TS",
+      "description": "Run Gaussian TS optimization and frequency analysis",
+      "tool": "Gaussian",
+      "inputs": "GJF",
+      "expected_outputs": "TS result with one imaginary frequency",
+      "success_criteria": "Normal termination and exactly one imaginary frequency",
+      "error_handling_hint": "Adjust TS keywords or improve initial guess",
+      "calculation_context": {
+        "scientific_question": "Find a plausible TS and validate it",
+        "calculation_purpose": "Transition-state optimization and validation",
+        "job_type": "ts",
+        "target_species": "TS",
+        "elements": ["C", "H", "O", "N"],
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "Acetone",
+        "validation_plan": [
+          "exactly one imaginary frequency",
+          "IRC when pathway verification is required"
+        ]
+      },
+      "route_section": "#p B3LYP/6-31G(d) Opt=(TS,CalcAll,NoEigenTest,MaxStep=5) Freq SCRF=(IEFPCM,Solvent=Acetone)",
+      "job_type": "ts"
+    }
+  ]
+}

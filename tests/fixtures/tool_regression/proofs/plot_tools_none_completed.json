@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "raw_result": {
+    "success": true,
+    "spectrum_type": "IR",
+    "input_file_path": {"$arche_task_relative_path": "inputs/plot_tools_none_completed/spectrum.log"},
+    "output_image_path": {"$arche_task_relative_path": "outputs/plot_tools_none_completed/result.png"},
+    "supported_types": ["vibrational_base", "IR", "Raman", "ROA", "VCD", "UV-Vis", "ECD", "NMR"],
+    "image_bytes": null,
+    "message": "Spectrum generated from Gaussian log fallback",
+    "fallback_result": {
+      "success": true,
+      "message": "Spectrum generated from Gaussian log fallback",
+      "frequencies": [1000.0, 1200.0, 1500.0],
+      "intensities": [10.0, 20.0, 15.0],
+      "output_image_path": {"$arche_task_relative_path": "outputs/plot_tools_none_completed/result.png"},
+      "spectrum_type": "IR",
+      "fallback": "gaussian_log_parser"
+    }
+  },
+  "artifact_refs": [
+    {"path": "outputs/plot_tools_none_completed/result.png", "sha256": "33d4382a8547c70dca2f28bb32ff3a00947c109dabcc91608e78bdfd2a9133ba"}
+  ],
+  "normalized_execution_step": {
+    "tool_name": "plot_tools",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": true,
+      "spectrum_type": "IR",
+      "input_file_path": "inputs/plot_tools_none_completed/spectrum.log",
+      "output_image_path": "outputs/plot_tools_none_completed/result.png",
+      "supported_types": ["vibrational_base", "IR", "Raman", "ROA", "VCD", "UV-Vis", "ECD", "NMR"],
+      "image_bytes": null,
+      "message": "Spectrum generated from Gaussian log fallback",
+      "fallback_result": {
+        "success": true,
+        "message": "Spectrum generated from Gaussian log fallback",
+        "frequencies": [1000.0, 1200.0, 1500.0],
+        "intensities": [10.0, 20.0, 15.0],
+        "output_image_path": "outputs/plot_tools_none_completed/result.png",
+        "spectrum_type": "IR",
+        "fallback": "gaussian_log_parser"
+      },
+      "output_artifacts": ["outputs/plot_tools_none_completed/result.png"]
+    },
+    "output_files": ["outputs/plot_tools_none_completed/result.png"],
+    "validation": {"checks": {"real_tool.success": true}}
+  },
+  "gaussian_execution_receipt": null
+}

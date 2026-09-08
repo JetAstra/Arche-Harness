@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "raw_result": {
+    "success": true,
+    "spectrum_type": "IR",
+    "input_file_path": {"$arche_task_relative_path": "inputs/plot_tools_none_success_matched/spectrum.log"},
+    "output_image_path": {"$arche_task_relative_path": "outputs/plot_tools_none_success_matched/result.png"},
+    "message": "Spectrum generated from recorded fixture"
+  },
+  "artifact_refs": [
+    {"path": "outputs/plot_tools_none_success_matched/result.png", "sha256": "33d4382a8547c70dca2f28bb32ff3a00947c109dabcc91608e78bdfd2a9133ba"}
+  ],
+  "normalized_execution_step": {
+    "tool_name": "plot_tools",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": true,
+      "spectrum_type": "IR",
+      "input_file_path": "inputs/plot_tools_none_success_matched/spectrum.log",
+      "output_image_path": "outputs/plot_tools_none_success_matched/result.png",
+      "message": "Spectrum generated from recorded fixture",
+      "output_artifacts": ["outputs/plot_tools_none_success_matched/result.png"]
+    },
+    "output_files": ["outputs/plot_tools_none_success_matched/result.png"],
+    "validation": {"checks": {"real_tool.success": true}}
+  },
+  "gaussian_execution_receipt": null
+}

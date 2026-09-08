@@ -1,0 +1,71 @@
+{
+  "version": "0.149.0",
+  "platform": "linux-x64",
+  "target": "x86_64-unknown-linux-musl",
+  "source_package": "@openai/codex@0.149.0-linux-x64",
+  "source_repository": "https://github.com/openai/codex",
+  "source_tag": "rust-v0.149.0",
+  "source_commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+  "license": "Apache-2.0",
+  "runtime_layout_version": 1,
+  "runtime_entrypoint": "vendor/x86_64-unknown-linux-musl/bin/codex",
+  "runtime_cache": "local_data/runtime/codex_cli/0.149.0/linux-x64",
+  "package_manifest": {
+    "path": "linux-x64/codex-package.json",
+    "runtime_path": "vendor/x86_64-unknown-linux-musl/codex-package.json",
+    "sha256": "0b3f869f9fbd009f4d0c68c68ab50d53778855899b19106a607c6cd1861637a3",
+    "size": 205
+  },
+  "components": [
+    {
+      "name": "codex",
+      "source_path": "bin/codex",
+      "archive": "linux-x64/codex.bin.xz",
+      "archive_sha256": "aa107e694a655b646642d8519e4d4783fb01bd4a5ed166f4238bf0157b9a4a68",
+      "runtime_path": "vendor/x86_64-unknown-linux-musl/bin/codex",
+      "binary_sha256": "bbc3341e44c9ead340ed9570c17be936e37870f570751a941699ffd04d672827",
+      "binary_size": 258322048,
+      "executable": true
+    },
+    {
+      "name": "codex-code-mode-host",
+      "source_path": "bin/codex-code-mode-host",
+      "archive": "linux-x64/codex-code-mode-host.bin.xz",
+      "archive_sha256": "1e53f1b2759e3863eb4aa482ce2578a63fa7a536ddba6338d8d7b5575c36cf28",
+      "runtime_path": "vendor/x86_64-unknown-linux-musl/bin/codex-code-mode-host",
+      "binary_sha256": "ba0f620a1d242a7555750e96c30c4c03b8b89ec0d4cff987e21bcd79fa18a363",
+      "binary_size": 57882552,
+      "executable": true
+    },
+    {
+      "name": "bwrap",
+      "source_path": "codex-resources/bwrap",
+      "archive": "linux-x64/bwrap.bin.xz",
+      "archive_sha256": "86018e9bd1de9095984b913f4b3a973e91c7c2e542048058e1aa0d166da9b912",
+      "runtime_path": "vendor/x86_64-unknown-linux-musl/codex-resources/bwrap",
+      "binary_sha256": "7df960565a0dece99240ea4b9d0e011307817f9f3b73176c7b71fda44fe84765",
+      "binary_size": 529776,
+      "executable": true
+    },
+    {
+      "name": "zsh",
+      "source_path": "codex-resources/zsh/bin/zsh",
+      "archive": "linux-x64/zsh.bin.xz",
+      "archive_sha256": "a3a3777b4402cf6f12051ed4686246f49a06fa969fc43ba59c88e06fd9e7f395",
+      "runtime_path": "vendor/x86_64-unknown-linux-musl/codex-resources/zsh/bin/zsh",
+      "binary_sha256": "67faaaa89242c4a332e16e508a1977cffc24bf7fca31d4411cdfd101f3831ef3",
+      "binary_size": 898480,
+      "executable": true
+    },
+    {
+      "name": "rg",
+      "source_path": "codex-path/rg",
+      "archive": "linux-x64/rg.bin.xz",
+      "archive_sha256": "acbbf1c51e2320edacd7ff8c17cf9bbc90a456268f3974084ac77a03b0325b5a",
+      "runtime_path": "vendor/x86_64-unknown-linux-musl/codex-path/rg",
+      "binary_sha256": "e62198eb19b136b88c330af83647b5a962cb99b6b1f066758568f12de1974849",
+      "binary_size": 5408904,
+      "executable": true
+    }
+  ]
+}

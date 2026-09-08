@@ -1,0 +1,9 @@
+{
+  "layoutVersion": 1,
+  "version": "0.149.0",
+  "target": "x86_64-unknown-linux-musl",
+  "variant": "codex",
+  "entrypoint": "bin/codex",
+  "resourcesDir": "codex-resources",
+  "pathDir": "codex-path"
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "raw_result": {
+    "success": false,
+    "input_file_path": {"$arche_task_relative_path": "inputs/plot_tools_none_success_not_matched/spectrum.log"},
+    "output_image_path": {"$arche_task_relative_path": "outputs/plot_tools_none_success_not_matched/result.png"},
+    "spectrum_type": "IR",
+    "message": "recorded spectrum failure"
+  },
+  "artifact_refs": [],
+  "normalized_execution_step": {
+    "tool_name": "plot_tools",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": false,
+      "input_file_path": "inputs/plot_tools_none_success_not_matched/spectrum.log",
+      "output_image_path": "outputs/plot_tools_none_success_not_matched/result.png",
+      "spectrum_type": "IR",
+      "message": "recorded spectrum failure",
+      "output_artifacts": []
+    },
+    "output_files": [],
+    "validation": {"checks": {"real_tool.success": false}}
+  },
+  "gaussian_execution_receipt": null
+}

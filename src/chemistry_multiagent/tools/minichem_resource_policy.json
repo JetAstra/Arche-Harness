@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "evaluation_resource_budget": {
+    "cpu_cores": 60,
+    "memory_mb": 320000,
+    "gpu_count": 1,
+    "source": "evaluation_policy",
+    "agent_controllable": false,
+    "scope": "per_task"
+  }
+}

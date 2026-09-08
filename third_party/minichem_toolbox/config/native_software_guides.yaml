@@ -1,0 +1,268 @@
+schema_version: 1
+policy:
+  execution_model: exact_agent_authored_command
+  shell: false
+  automatic_scientific_defaults: false
+  automatic_backend_selection: false
+  automatic_fallback: false
+  notes:
+  - Every native call requires an explicit software_id, executable, argument list, staged input map, and
+    resource limit object.
+  - The runner stages regular workspace files into an isolated job directory and records the exact command,
+    stdout, stderr, exit code, and output hashes.
+  - These guides describe invocation mechanics only. They do not prescribe a scientific workflow, method,
+    basis, force field, convergence setting, or ordering of calls.
+software:
+  openbabel:
+    purpose: Convert, filter, and manipulate molecular file formats with Open Babel.
+    commands:
+      obabel:
+        synopsis: obabel -i<input_format> input -o<output_format> -O output [options]
+        input_mode: arguments
+        required_files:
+        - molecular input file
+        output_behavior: Writes the path supplied after -O; diagnostics are written to stderr.
+        example_arguments:
+        - -ixyz
+        - input.xyz
+        - -osdf
+        - -O
+        - output.sdf
+        notes:
+        - Select input and output formats explicitly; do not rely on filename inference in benchmark calls.
+  crest:
+    purpose: Perform CREST conformer searches and related xTB-driven sampling from an Agent-authored structure
+      and options.
+    commands:
+      crest:
+        synopsis: crest input.xyz --gfn2 --T <threads> [sampling options]
+        input_mode: arguments
+        required_files:
+        - input.xyz
+        output_behavior: Writes CREST result files such as crest_conformers.xyz in the job directory.
+        example_arguments:
+        - input.xyz
+        - --gfn2
+        - --T
+        - '4'
+        notes:
+        - Charge, spin, solvent, energy method, and sampling controls must be supplied explicitly when
+          scientifically required.
+  xtb:
+    purpose: Execute native xTB single points, properties, optimization, frequencies, dynamics, and related
+      modes selected by the Agent.
+    commands:
+      xtb:
+        synopsis: xtb structure.xyz --gfn <level> [--sp|--opt|--hess|--md] [explicit options]
+        input_mode: arguments
+        required_files:
+        - structure.xyz
+        output_behavior: Writes primary text to stdout and mode-specific files in the job directory.
+        example_arguments:
+        - structure.xyz
+        - --gfn
+        - '2'
+        - --sp
+        - --chrg
+        - '0'
+        - --uhf
+        - '0'
+        notes:
+        - Choose the xTB level, charge, unpaired electrons, solvent, and requested calculation mode explicitly.
+  multiwfn:
+    purpose: Run Multiwfn analyses using an explicit wavefunction file and menu-command stream.
+    commands:
+      Multiwfn_noGUI:
+        synopsis: Multiwfn_noGUI wavefunction_file < commands.txt
+        input_mode: arguments_and_stdin_file
+        required_files:
+        - wavefunction file
+        - commands.txt
+        output_behavior: Writes interactive-menu output to stdout and selected analysis files to the job
+          directory.
+        example_arguments:
+        - wavefunction.fchk
+        notes:
+        - Set stdin_file to commands.txt; the Agent must author every menu selection and numerical parameter.
+  gaussian:
+    purpose: Execute Gaussian 16 input and convert checkpoint files with formchk.
+    commands:
+      g16:
+        synopsis: g16 < input.com
+        input_mode: stdin_file
+        required_files:
+        - input.com
+        output_behavior: Writes Gaussian output to stdout; collection declares stdout as GaussianIRCLog for
+          the frozen calculation_intent reaction_path, GaussianLog for transition_state or
+          optimization_frequency, and leaves other intents unchanged. Checkpoint/scratch files are named in
+          the route input.
+        example_arguments: []
+        notes:
+        - Set stdin_file to input.com and declare the scientific method, charge, multiplicity, and
+          task in that file. CPU and memory directives are service-managed at submission.
+      formchk:
+        synopsis: formchk input.chk output.fchk
+        input_mode: arguments
+        required_files:
+        - input.chk
+        output_behavior: Writes the formatted checkpoint path supplied as the second argument.
+        example_arguments:
+        - input.chk
+        - output.fchk
+  goodvibes:
+    purpose: Apply GoodVibes 4.3.0 thermochemistry, ensemble, selectivity, consistency, and reaction-profile
+      analysis to explicit completed quantum-chemistry outputs.
+    commands:
+      goodvibes:
+        synopsis: goodvibes OUTPUT... --temp K [state/scaling/qh options] [analysis option] --json result.json
+        input_mode: arguments
+        required_files:
+        - one or more Gaussian 09/16
+        - ORCA 5/6
+        - NWChem
+        - Q-Chem 6
+        - xTB
+        - or ASE-extxyz output files
+        output_behavior: Writes a GoodVibes_NAME.dat report and, when requested, structured JSON/CSV/Parquet
+          plus plots or XYZ files in the isolated job directory.
+        example_arguments:
+        - output.log
+        - --temp
+        - '298.15'
+        - --conc
+        - '1.0'
+        - --qs
+        - grimme
+        - --qh
+        - --fs
+        - '100'
+        - --fh
+        - '100'
+        - -v
+        - '0.99'
+        - --zpe-vscal
+        - '0.98'
+        - --json
+        - result.json
+        notes:
+        - Temperature, concentration/standard state, frequency scaling, quasi-harmonic treatment, and
+          solvation corrections are scientific choices.
+        - Use -v/--vscal for vibrational scaling. --fs is the quasi-harmonic entropy cutoff in cm-1; it
+          is not a scale factor.
+        - Omit -v only when deliberately choosing GoodVibes level-of-theory auto lookup; record that choice
+          in the task trace.
+        - Use --boltz energy or --boltz gibbs for ensemble populations, --dedup with explicit cutoffs
+          for duplicate filtering, and --check for consistency diagnostics.
+        - Use repeated --label NAME=PATTERN or --selectivity labels.yaml for N-way selectivity; prefer
+          the non-deprecated interfaces over --ee.
+        - Use --pes profile.yaml for a reaction profile. The YAML defines pathways, species file membership,
+          zero references, and output units; --nogconf and --lowest-only select the conformer treatment.
+        - Use --ti START,END,STEP for the native integer-grid temperature report. The predefined temperature-scan
+          Action instead accepts an explicit temperature list and returns structured results at every
+          point.
+        - --json/--export writes schema 1.0 in GoodVibes 4.3.0, but upstream describes the schema as preview
+          before v5; consumers should retain schema_version and goodvibes_version.
+        - result.json is an output and must not be listed in staged_inputs. For --spc SUFFIX, stage matching
+          safe names such as frequency.log and frequency_SUFFIX.out, and pass SUFFIX without the separator
+          underscore (for frequency_DLPNO.out use --spc DLPNO, not --spc _DLPNO); the derive_thermochemistry
+          Action performs this pairing when single_point_output_file is supplied.
+  pysisyphus:
+    purpose: Execute a complete pysisyphus workflow configuration authored by the Agent.
+    commands:
+      pysis:
+        synopsis: pysis config.yaml
+        input_mode: arguments
+        required_files:
+        - config.yaml
+        - every structure or auxiliary file referenced inside config.yaml
+        output_behavior: Writes optimization, pathway, or dynamics outputs selected by config.yaml.
+        example_arguments:
+        - config.yaml
+        configuration_contract:
+          tested_version: 1.0.0
+          file_resolution: Referenced relative filenames are resolved inside the isolated native-job directory,
+            so each one must be included in staged_inputs with the same target filename.
+          valid_top_level_sections:
+          - assert
+          - afir
+          - barriers
+          - calc
+          - cos
+          - endopt
+          - geom
+          - hindered_rotor
+          - interpol
+          - irc
+          - md
+          - mdp
+          - opt
+          - perf
+          - precontr
+          - preopt
+          - scan
+          - shake
+          - stocastic
+          - tsopt
+          endpoint_rule: Put one endpoint file or a list of endpoint files in geom.fn. There is no top-level
+            endpoints section and no cos.images field in pysisyphus 1.0.0.
+          common_exact_values:
+            geometry_types:
+            - cart
+            - redund
+            - dlc
+            - tric
+            interpolation_types:
+            - linear
+            - idpp
+            - lst
+            - redund
+            - geodesic
+            chain_of_states_types:
+            - neb
+            - aneb
+            - feneb
+            - szts
+            - gs
+            - fs
+            path_optimizer_types:
+            - qm
+            - lbfgs
+            - bfgs
+            - cg
+            - fire
+            - sd
+            transition_state_optimizer_types:
+            - rsprfo
+            - prfo
+            - trim
+            - rsirfo
+            - irfo
+            irc_integrator_types:
+            - dvv
+            - euler
+            - eulerpc
+            - gs
+            - imk
+            - lqa
+            - modekill
+            - rk4
+          templates:
+            two_endpoint_neb: "geom:\n  type: cart\n  fn: [reactant.xyz, product.xyz]\ncalc:\n  type:\
+              \ xtb\n  charge: 0\n  mult: 1\n  gfn: 2\n  pal: 1\ninterpol:\n  type: idpp\n  between: 8\n\
+              cos:\n  type: neb\n  fix_first: true\n  fix_last: true\n  climb: true\nopt:\n  type: qm\n\
+              \  max_cycles: 200\n  thresh: gau_loose"
+            transition_state_search: "geom:\n  type: cart\n  fn: transition_state_guess.xyz\ncalc:\n \
+              \ type: xtb\n  charge: 0\n  mult: 1\n  gfn: 2\n  pal: 1\ntsopt:\n  type: rsprfo\n  hessian_init:\
+              \ xtb\n  max_cycles: 150\n  thresh: gau"
+            irc_from_transition_state: "geom:\n  type: cart\n  fn: validated_transition_state.xyz\ncalc:\n\
+              \  type: xtb\n  charge: 0\n  mult: 1\n  gfn: 2\n  pal: 1\nirc:\n  type: eulerpc\n  step_length:\
+              \ 0.1\n  max_cycles: 150\n  forward: true\n  backward: true\n  hessian_init: calc"
+        notes:
+        - The templates document input mechanics, not recommended chemistry. Replace charge, multiplicity,
+          calculator, method, cores, image count, optimizer, thresholds, and cycle limits deliberately
+          for the system at hand.
+        - For a two-endpoint path, stage reactant.xyz and product.xyz and reference those exact target
+          names from geom.fn. Do not invent endpoints or cos.images keys.
+        - A converged chain-of-states path is not automatically a validated transition state; explicitly
+          inspect its highest-energy image and run the chosen TS, Hessian/mode, and connectivity checks
+          when the scientific claim requires them.

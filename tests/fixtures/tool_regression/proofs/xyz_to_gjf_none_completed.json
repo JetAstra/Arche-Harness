@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "raw_result": {
+    "success": true,
+    "input_xyz_path": {"$arche_task_relative_path": "inputs/xyz_to_gjf_none_completed/molecule.xyz"},
+    "output_gjf_path": {"$arche_task_relative_path": "outputs/xyz_to_gjf_none_completed/result.gjf"},
+    "route_section": "# M062X/6-31G(d) SP",
+    "charge": 0,
+    "multiplicity": 1,
+    "atom_count_line_fixed": false,
+    "write_back_fixed_xyz": false,
+    "atoms_written": 1,
+    "message": "Converted XYZ to GJF successfully"
+  },
+  "artifact_refs": [
+    {"path": "outputs/xyz_to_gjf_none_completed/result.gjf", "sha256": "31d3b722feb54e8a76002d97326d76c0cc71ca2eab6f47a63cf6a0983075a96f"}
+  ],
+  "normalized_execution_step": {
+    "tool_name": "xyz_to_gjf",
+    "job_type": "none",
+    "status": "completed",
+    "raw_output": {
+      "success": true,
+      "input_xyz_path": "inputs/xyz_to_gjf_none_completed/molecule.xyz",
+      "output_gjf_path": "outputs/xyz_to_gjf_none_completed/result.gjf",
+      "route_section": "# M062X/6-31G(d) SP",
+      "charge": 0,
+      "multiplicity": 1,
+      "atom_count_line_fixed": false,
+      "write_back_fixed_xyz": false,
+      "atoms_written": 1,
+      "message": "Converted XYZ to GJF successfully",
+      "output_artifacts": ["outputs/xyz_to_gjf_none_completed/result.gjf"]
+    },
+    "output_files": ["outputs/xyz_to_gjf_none_completed/result.gjf"],
+    "validation": {"checks": {"real_tool.success": true}}
+  },
+  "gaussian_execution_receipt": null
+}
