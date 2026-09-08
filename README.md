@@ -16,8 +16,8 @@ This repository is based on the ARCHE project associated with Dong Li et al., **
 
 Building on ARCHE, this repository substantially reworks the planning–execution–reflection loop after hypothesis formation, together with the toolbox encapsulation and inheritance architecture:
 
-- **Harness-based planning–execution–reflection architecture:** Shijie Wang (王诗杰) and Yifei Cheng (程亦飞). They organized planning, execution, evidence collection, and reflective review after hypothesis formation into a Harness-orchestrated loop. Their work also includes integrating the ARCHE execution workflow with the computational toolbox. The resulting architecture supports isolated investigation sessions, persistent runtime state, and recovery for long-running computational jobs.
-- **Computational toolbox refactoring:** Fangyuan Li (李方圆) refactored the computational toolbox.
+- **Harness-based planning–execution–reflection architecture:** Shijie Wang and Yifei Cheng. They organized planning, execution, evidence collection, and reflective review after hypothesis formation into a Harness-orchestrated loop. Their work also includes integrating the ARCHE execution workflow with the computational toolbox. The resulting architecture supports isolated investigation sessions, persistent runtime state, and recovery for long-running computational jobs.
+- **Computational toolbox refactoring:** Fangyuan Li refactored the computational toolbox.
 
 ## What ARCHE can do
 
