@@ -8,7 +8,7 @@
 
 Arche-Harness 基于 ARCHE 构建。ARCHE 是面向计算化学研究的多智能体系统，将科学问题、文献检索、竞争性机理假设、计算实验和基于证据的结论连接起来，服务于反应机理、立体选择性、光化学活化和可解释化学描述符等研究问题。本仓库聚焦于提升长时间研究任务中的执行编排、反思审查、状态恢复与计算工具接入能力。
 
-本仓库以 Dong Li 等人论文 **“Autonomous Chemical Mechanistic Discovery through Agentic Reasoning and Validation”** 对应的 ARCHE 项目代码为基础。当前实现进一步引入持久化工作记忆、独立调查会话和长时间化学作业恢复，支持持续推进推理、验证与反思循环。
+本仓库基于 Dong Li 等人论文 **“Autonomous Chemical Mechanistic Discovery through Agentic Reasoning and Validation”** 配套发布的 ARCHE 原始代码 [Arvin0313/ARCHE](https://github.com/Arvin0313/ARCHE) 开发。在该代码基础上，Arche-Harness 重点将假设生成之后的规划—执行—反思链路重构为基于 Harness 的架构，重构计算工具箱的封装与继承，并完成 ARCHE 执行流程与计算工具箱的集成。当前实现还引入了持久化工作记忆、独立调查会话和长时间化学作业恢复，支持持续推进推理、验证与反思循环。
 
 > **发布范围。** 本仓库提供当前 `investigation_v2` 实现和部分可机器读取的案例数据。论文描述的是较早的 Planner/Execution/Reflection 实现；比较运行结果前，请阅读[论文与代码版本](#论文与代码版本)。代码依据[仓库许可证](LICENSE)公开，用于学术与非商业研究；与 ARCHE 相关的专利已经申请。
 
