@@ -293,6 +293,6 @@ This is a **source-available research release**, not an OSI-approved open-source
 
 ## Contact and contributions
 
-For project questions, research collaboration, or commercial/patent licensing, contact **Dong Li at [arvinlee826@gmail.com](mailto:arvinlee826@gmail.com)**. For manuscript-related academic questions, contact [Bowen Zhou](mailto:zhoubowen@tsinghua.edu.cn), [Yuqiang Li](mailto:liyuqiang@pjlab.org.cn), or [Biqing Qi](mailto:qibiqing@pjlab.org.cn).
+For project questions, research collaboration, or commercial/patent licensing, contact **Dong Li at [arvinlee826@gmail.com](mailto:arvinlee826@gmail.com)**. For manuscript-related academic questions, contact [Yuqiang Li](mailto:liyuqiang@pjlab.org.cn), or [Biqing Qi](mailto:qibiqing@pjlab.org.cn).
 
 Issue reports, documentation improvements, and reproduction feedback are welcome. Include the code version, runtime environment, minimal input, expected and observed behavior, and redacted error details.
